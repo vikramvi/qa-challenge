@@ -32,7 +32,7 @@ The goal here is to see how autonomous you are and how much you've made your int
 
 ## Delivery
 
-Both these challenges should be delivered into this github repo. You have write access to this repo so you can organize your work in there however you prefer.
+Fork this repo and once you're done send us a pull request. The result should be a repository on Github with instructions how to run tests.
 
 ## Talk to us
 
