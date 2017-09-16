@@ -180,3 +180,10 @@ How To Run:
 1.2 Installs app on the device
 1.3 Executes 4 user stories on device
 1.4 Stops appium server once execution is over
+
+
+Notes / Feedback:
+
+1. Majority of the user stories can be automated at API level, which runs faster and yields quicker results
+2. This also helps in maintaining test pyramid
+3. Please refer to repo https://github.com/vikramvi/RESTful-api-automation
