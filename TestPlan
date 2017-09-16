@@ -1,0 +1,182 @@
+--------------------------------------------------------------------------------------------------------
+                                        First Task Report
+--------------------------------------------------------------------------------------------------------
+
+>>>>>>>>>>  Which are the most important features to test? <<<<<<<<<<
+
+
+------------------ Compatibility Testing of the App ------------------
+
+1. From 2 million users' data; find out which is most used phone models, OS versions on Android & iOS
+2. Based on this data, pick up different mobiles & OS which covers at least 65 - 75% of users' base; this will cover "compatibility testing"
+
+
+
+------------------ Error Message Testing ------------------
+
+1. App should show proper error message for below scenarios
+1.1 Location is in OFF state when app is launched
+1.2 User has not connected to internet when app is launched
+1.3 User has got disconnected from internet during app usage
+1.4 Location is turned OFF during app usage
+
+
+------------------ UI Testing ------------------
+
+1. Again refer to sample data; to check UI looks good on different mobile sizes ( Text, Font, Icon Images, Color )
+
+
+
+------------------ Functional Testing ------------------
+
+1. Goto each of the tabs and check if content is loaded properly
+1.1  Newest, Most Commented, Most Voted, Trending, Channel, My Karma
+2. Jodel feature is working properly from Newest, Most Commented, Most Voted screens
+3. From mostly used features tracked from prod data, those feature should be tested first
+
+
+
+------------------  Data Consumption ------------------
+
+1. Check data consumption of app on lowermost devices taken from user data
+1.1 These checks to be performed for all the user stories from Functional Testing
+2. Maintain historical data to benchmark for each of the releases
+
+
+
+------------------ Memory Consumption ------------------
+
+1. Check memory consumption of app on lowermost devices taken from user data
+1.1 These checks to be performed for all the user stories from Functional Testing
+2. Maintain historical data to benchmark for each of the releases
+
+
+
+------------------ Battery Consumption ------------------
+
+1. Check battery consumption of app on lowermost devices taken from user data
+1.1 These checks to be performed for all the user stories from Functional Testing
+2. Maintain historical data to benchmark for each of the releases
+
+
+
+------------------ Network Testing ------------------
+
+1. Check if all the user stories from Functional Testing working on bad network ( edge, 2G etc ) quality as well
+
+
+
+
+
+>>>>>>>>>> How would you define a problematic release and which aspects would you focus on to avoid it? <<<<<<<<<<
+
+1. In case one of the above is not working, then I'll flag release as problematic
+2. I'll focus on above critical scenarios to make sure release is of good quality
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+                                        Second Task Report
+--------------------------------------------------------------------------------------------------------
+
+>>>>>>>>>> User stories related to POST function <<<<<<<<<<
+
+Scenario: Big plus icon is shown on Newest tab screen
+Given User is on Newest tab screen
+When  User taps on big plus icon
+Then  User is on post message screen
+
+Scenario: Big plus icon is shown on Most Commented tab screen
+Given User is on Most Commented tab screen
+When  User taps on big plus icon
+Then  User is on post message screen
+
+Scenario: Big plus icon is shown on Most Voted tab screen
+Given User is on Most Voted tab screen
+When  User taps on big plus icon
+Then  User is on post message screen
+
+Scenario: User is shown terms & condition page first time before landing on post message screen
+Given User taps on big plus icon first time
+Then  User is taken to terms conditions page
+
+Scenario: Blinking cursor is seen on post message screen
+Given User is on post message screen
+Then  Continuously blinking cursor is shown
+And   Keyboard is in open state
+
+Scenario: User can post message successfully from post message screen
+Given User is on post message screen
+When  User inputs some text
+And   User taps on Send button
+Then  Message gets posted
+And   Message is visible under Newest tab screen
+
+Scenario: User is shown Send button on top right corner on post message screen
+Given User is on post message screen
+Then  Send button is shown on top right corner of screen
+
+Scenario: User taps on camera icon on post message screen is asked for permission
+Given User is on post message screen
+When  User taps on camera icon first time
+Then  User is asked for permission
+
+Scenario: Post message screen shows preseleced location tags above keyboard
+Given User is on post message screen
+Then  User is shown preselected location tags
+
+Scenario: Post message screen user can choose one of the preselected tags
+Given User is on post message screen
+When  User taps on one of the preselected location tags
+Then  Location tag is shown inside message body
+And   Preselected locations tags gets hidden
+
+Scenario: Post message screen user can remove already selected location tag
+Given User is on post message screen
+When  User has selected one of the preselected location tags
+And   User taps on cancel for selected location tag
+Then  User is shown preselected location tags
+
+Scenario: Post message screen doesn't allow user to post empty message
+Given User is on post message screen
+When  User taps on Send with empty text
+Then  User is shown error message
+
+Scenario: User is shown locations list after tapping on More on post message screen
+Given User is on post message screen
+When User taps on More
+Then User is shown locations list
+
+Scenario: User input from post message input text field is retained
+Given User has entered some text inside message input field
+When  User goes to home screen
+And   User comes back to message screen
+Then  User can see already inputted text
+
+
+
+
+>>>>>>>>>> Automation <<<<<<<<<<
+
+1. UI automation is achieved with Appium, Cucumber with Java, JUnit, Maven
+2. User stories which are automated reside under Test > resources folder
+3. PageObject & PageFactory design patterns are used to keep code DRY, easy to debug & maintain
+4. Core framework related files reside under package com.jodel.appium.framework
+   These take care of appium server start/stop  & driver creation
+
+
+Pre-requisite:
+
+1. Install appium on mac from command line using npm ( https://www.npmjs.com/package/appium )
+2. Install maven on mac brew install maven ( brew install maven )
+3. Connect android device to mac, keep it in unlocked state with location in ON state
+
+
+How To Run:
+
+1. From project directory, run command mvn clean verify
+1.1 This automatically starts appium server
+1.2 Installs app on the device
+1.3 Executes 4 user stories on device
+1.4 Stops appium server once execution is over
